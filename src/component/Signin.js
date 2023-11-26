@@ -1,5 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useDebugValue, useRef, useState } from "react";
 import { validateData } from "../utils/validate";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addUser } from "../utils/userSlice";
 
 const Signin = ({ setIsSignInForm }) => {
   const email = useRef(null);
@@ -7,10 +12,39 @@ const Signin = ({ setIsSignInForm }) => {
 
   const [error, setError] = useState(null);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleButtonClick = (e) => {
     e.preventDefault();
     const msg = validateData(email.current.value, password.current.value);
     setError(msg);
+    if (msg) return;
+    signInWithEmailAndPassword(
+      auth,
+      email.current.value,
+      password.current.value
+    )
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        dispatch(
+          addUser({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          })
+        );
+        navigate("/browse");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage + "-" + errorCode);
+      });
   };
   return (
     <form className="bg-black bg-opacity-80 w-[30%] absolute top-[10%] left-[35%] mx-auto flex flex-col py-20 px-10 text-white">

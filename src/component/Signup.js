@@ -1,16 +1,58 @@
 import React, { useRef, useState } from "react";
 import { validateData } from "../utils/validate";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addUser } from "../utils/userSlice";
 
 const Signup = ({ setIsSignInForm }) => {
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleButtonClick = (e) => {
     e.preventDefault();
     const msg = validateData(email.current.value, password.current.value);
     setError(msg);
+
+    createUserWithEmailAndPassword(
+      auth,
+      email.current.value,
+      password.current.value
+    )
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+        updateProfile(user, {
+          displayName: name.current.value,
+          photoURL: "https://example.com/jane-q-user/profile.jpg",
+        })
+          .then(() => {
+            const user = auth.currentUser;
+            dispatch(
+              addUser({
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+              })
+            );
+            navigate("/browse");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage + "-" + errorCode);
+      });
   };
   return (
     <form className="bg-black bg-opacity-80 w-[30%] absolute top-[10%] left-[35%] mx-auto flex flex-col py-20 px-10 text-white">

@@ -1,12 +1,8 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import Login from "./Login";
 
 const Body = () => {
-  return (
-    <div>
-      <Outlet />
-    </div>
-  );
+  return <Login />;
 };
 
 export default Body;
