@@ -25,7 +25,6 @@ const Signup = ({ setIsSignInForm }) => {
       password.current.value
     )
       .then((userCredential) => {
-        // Signed up
         const user = userCredential.user;
         console.log(user);
         updateProfile(user, {
@@ -42,7 +41,6 @@ const Signup = ({ setIsSignInForm }) => {
                 photoURL: user.photoURL,
               })
             );
-            navigate("/browse");
           })
           .catch((error) => {
             console.log(error);

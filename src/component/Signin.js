@@ -26,7 +26,6 @@ const Signin = ({ setIsSignInForm }) => {
       password.current.value
     )
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         console.log(user);
         dispatch(
@@ -37,8 +36,6 @@ const Signin = ({ setIsSignInForm }) => {
             photoURL: user.photoURL,
           })
         );
-        navigate("/browse");
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
