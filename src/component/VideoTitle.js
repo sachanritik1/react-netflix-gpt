@@ -4,7 +4,9 @@ const VideoTitle = ({ title, overview }) => {
   return (
     <div className="absolute text-white bg-gradient-to-r px-6 pt-72 from-black w-full h-screen ">
       <p className="font-semibold text-6xl py-1">{title}</p>
-      <p className="h-18 w-1/3 py-1 opacity-70">{overview}</p>
+      <p className="h-18 w-1/3 py-1 opacity-70">
+        {overview.length < 300 ? overview : overview.slice(0, 300) + "..."}
+      </p>
       <div className="flex py-1">
         <button className="bg-white text-black px-5 py-2 rounded-sm text-lg hover:bg-opacity-80">
           ▶️ Play
