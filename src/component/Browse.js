@@ -9,14 +9,6 @@ const Browse = () => {
   useMovies(TMDB_NOW_PLAYING_MOVIES_URL, addNowPlayingMovies);
   return (
     <div>
-      {/* 
-    - Main container
-     - video background
-     - video title
-    - Secondary container
-      - Movie list * n
-        -cards * n
-    */}
       <MainContainer />
       <SecondaryContainer />
     </div>

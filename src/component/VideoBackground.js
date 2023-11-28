@@ -7,16 +7,16 @@ const VideoBackground = ({ movieId }) => {
   const trailer = useSelector((appStore) => appStore.movies?.trailerVideo);
   useMovieTrailer(movieId, addTrailerVideo);
   return (
-    <div>
+    <div className="">
       <iframe
         className="w-full h-screen"
         src={
           "https://www.youtube.com/embed/" +
           trailer?.key +
-          "?&autoplay=1&mute=1&modestbranding=1&autohide=1&showinfo=0&controls=0"
+          "?&autoplay=1&mute=1&modestbranding=1&autohide=1&showinfo=0&controls=0&loop=1"
         }
         title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       ></iframe>
     </div>
   );

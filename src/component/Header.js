@@ -37,17 +37,17 @@ const Header = () => {
       });
   };
   return (
-    <div className="absolute bg-gradient-to-t from-transparent to-black w-full h-24 mb-20 z-50 flex justify-between items center">
+    <div className="absolute bg-gradient-to-t from-transparent to-black w-full h-24 mb-20 z-50 flex justify-between items-center">
       <img src={NETFLIX_LOGO} className="w-56" alt="logo" />
       {user && (
-        <div className="flex items-center">
+        <div className="flex items-center px-2">
           <img
             src={USER_AVATAR}
             alt="user-avatar"
             className="w-10 h-10 cursor-pointer"
           />
           <button
-            className="bg-red-800 p-2 rounded-md text-white text-sm"
+            className="px-2 rounded-md text-white text-sm"
             onClick={handleButtonClick}
           >
             SignOut

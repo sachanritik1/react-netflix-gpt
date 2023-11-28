@@ -13,6 +13,17 @@ export const TMDB_NOW_PLAYING_MOVIES_URL =
 
 export const TMDB_VIDEO_URL = "https://api.themoviedb.org/3/movie/";
 
+export const TMDB_IMG_CDN = "https://image.tmdb.org/t/p/w500/";
+
+export const TMDB_POPULAR_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/popular";
+
+export const TMDB_TOP_RATED_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/top_rated";
+
+export const TMDB_UPCOMING_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/upcoming";
+
 export const TMDB_API_OPTIONS = {
   method: "GET",
   headers: {

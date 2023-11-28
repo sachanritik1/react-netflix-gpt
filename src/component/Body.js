@@ -14,7 +14,9 @@ const Body = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <div className="bg-black">
+        <Outlet />
+      </div>
     </>
   );
 };
