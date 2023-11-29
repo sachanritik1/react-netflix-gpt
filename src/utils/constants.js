@@ -31,3 +31,8 @@ export const TMDB_API_OPTIONS = {
     Authorization: "Bearer " + TMDB_API_ACCESS_TOKEN,
   },
 };
+
+export const SUPPORTED_LANGUAGES = [
+  { id: "en", name: "English" },
+  { id: "hind", name: "हिंदी" },
+];
