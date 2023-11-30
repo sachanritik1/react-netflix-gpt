@@ -1,6 +1,5 @@
 import React from "react";
 import { TMDB_IMG_CDN } from "../utils/constants";
-import useMovieTrailer from "../hooks/useMovieTrailer";
 
 const MovieCard = ({ movie }) => {
   return (

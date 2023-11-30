@@ -26,7 +26,6 @@ const Signup = ({ setIsSignInForm }) => {
     )
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         updateProfile(user, {
           displayName: name.current.value,
           photoURL: "https://example.com/jane-q-user/profile.jpg",

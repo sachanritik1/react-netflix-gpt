@@ -36,3 +36,9 @@ export const SUPPORTED_LANGUAGES = [
   { id: "en", name: "English" },
   { id: "hind", name: "हिंदी" },
 ];
+
+export const OPEN_AI_API_KEY =
+  "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";
+
+export const TMDM_SEARCH_MOVIE_URL =
+  "https://api.themoviedb.org/3/search/movie?query=";

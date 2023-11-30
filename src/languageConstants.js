@@ -1,7 +1,7 @@
 export const lang = {
   en: {
-    gptSearchButton: "GptSearchBar",
-    gptSearchPlaceholder: "GptMovieSuggestion",
+    gptSearchButton: "Search",
+    gptSearchPlaceholder: "What would you like to watch today?",
   },
   hind: {
     gptSearchButton: "खोजें",
