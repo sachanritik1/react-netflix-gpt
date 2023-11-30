@@ -44,7 +44,7 @@ const GptSearchBar = () => {
         onSubmit={(e) => e.preventDefault()}
       >
         <input
-          className="p-2 w-72 rounded-md mx-2 w-3/4"
+          className="p-2 rounded-md mx-2 w-3/4"
           placeholder={lang[langId].gptSearchPlaceholder}
           ref={searchText}
         />
