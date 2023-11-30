@@ -4,7 +4,7 @@ export const USER_AVATAR =
   "https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg";
 export const LOGIN_BACKGROUND =
   "https://assets.nflxext.com/ffe/siteui/vlv3/d1532433-07b1-4e39-a920-0f08b81a489e/67033404-2df8-42e0-a5a0-4c8288b4da2c/IN-en-20231120-popsignuptwoweeks-perspective_alpha_website_large.jpg";
-export const TMDB_API_KEY = "18e23d2d9141ed5846c59b555fdedad5";
+export const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY || "";
 export const TMDB_API_ACCESS_TOKEN =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGUyM2QyZDkxNDFlZDU4NDZjNTliNTU1ZmRlZGFkNSIsInN1YiI6IjYwYmM2MTY5ZWI2NGYxMDA3Nzc4N2UxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BnrsBXME-E944uTslCqox-kf3uPNzj6PvIvicp9GjR4";
 
@@ -38,7 +38,7 @@ export const SUPPORTED_LANGUAGES = [
 ];
 
 export const OPEN_AI_API_KEY =
-  "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";
+  "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";
 
 export const TMDM_SEARCH_MOVIE_URL =
   "https://api.themoviedb.org/3/search/movie?query=";
