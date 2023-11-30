@@ -2,6 +2,9 @@ import React from "react";
 import { TMDB_IMG_CDN } from "../utils/constants";
 
 const MovieCard = ({ movie }) => {
+  if (!movie.poster_path) {
+    return null;
+  }
   return (
     <img
       className="w-48 rounded-lg px-2"
