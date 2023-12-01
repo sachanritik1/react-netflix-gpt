@@ -17,6 +17,8 @@ const GptSearchBar = () => {
   };
 
   async function handleGptSearch() {
+    dispatch(addSuggestedMovieNames([]));
+    dispatch(addSuggestedMovies([]));
     const gptQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchText.current.value +
@@ -28,19 +30,18 @@ const GptSearchBar = () => {
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: gptQuery }],
       });
+      const suggestedMovies = gptResults.choices[0].message.content.split(", ");
+      dispatch(addSuggestedMovieNames(suggestedMovies));
+
+      const promiseArray = suggestedMovies.map((suggestedMovie) =>
+        searchMovies(suggestedMovie)
+      );
+
+      const moviesArray = await Promise.all(promiseArray);
+      dispatch(addSuggestedMovies(moviesArray));
     } catch (error) {
       console.log(error);
     }
-
-    const suggestedMovies = gptResults.choices[0].message.content.split(", ");
-    dispatch(addSuggestedMovieNames(suggestedMovies));
-
-    const promiseArray = suggestedMovies.map((suggestedMovie) =>
-      searchMovies(suggestedMovie)
-    );
-
-    const moviesArray = await Promise.all(promiseArray);
-    dispatch(addSuggestedMovies(moviesArray));
   }
 
   return (
