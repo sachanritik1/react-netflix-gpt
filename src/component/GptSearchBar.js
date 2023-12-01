@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { lang } from "../languageConstants";
 import openai from "../utils/openai";
@@ -22,10 +22,16 @@ const GptSearchBar = () => {
       searchText.current.value +
       ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
 
-    const gptResults = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: gptQuery }],
-    });
+    let gptResults;
+    try {
+      gptResults = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: gptQuery }],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
     const suggestedMovies = gptResults.choices[0].message.content.split(", ");
     dispatch(addSuggestedMovieNames(suggestedMovies));
 
