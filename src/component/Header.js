@@ -15,6 +15,7 @@ import { setLanguage } from "../utils/configSlice";
 const Header = () => {
   const user = useSelector((appStore) => appStore.user);
   const [showGpt, setShowGpt] = useState(false);
+  const [showSignOut, setShowSignOut] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -92,14 +93,20 @@ const Header = () => {
           <img
             src={USER_AVATAR}
             alt="user-avatar"
-            className="w-10 h-10 cursor-pointer ml-2"
+            className="w-10 h-10 cursor-pointer ml-2 rounded-lg mr-10"
+            onClick={() => setShowSignOut(!showSignOut)}
           />
-          <button
-            className=" px-1 rounded-md text-white text-sm"
-            onClick={handleButtonClick}
-          >
-            SignOut
-          </button>
+          {showSignOut && (
+            <div className="fixed flex flex-col items-center gap-2 justify-center rounded-md text-black text-sm top-20 right-10 bg-gray-400 py-4 px-4">
+              <p>@{user?.email}</p>
+              <button
+                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-white"
+                onClick={handleButtonClick}
+              >
+                SignOut
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

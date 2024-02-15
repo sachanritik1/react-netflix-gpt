@@ -4,12 +4,10 @@ import Header from "../component/Header";
 
 const Body = () => {
   return (
-    <>
+    <div className="bg-black">
       <Header />
-      <div className="bg-black">
-        <Outlet />
-      </div>
-    </>
+      <Outlet />
+    </div>
   );
 };
 
