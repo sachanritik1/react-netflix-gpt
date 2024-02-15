@@ -4,8 +4,7 @@ import { addTrailerVideo } from "../utils/moviesSlice";
 import useMovieTrailer from "../hooks/useMovieTrailer";
 
 const VideoBackground = ({ movieId }) => {
-  const trailer = useSelector((appStore) => appStore.movies?.trailerVideo);
-  useMovieTrailer(movieId, addTrailerVideo);
+  const [trailer] = useMovieTrailer(movieId, addTrailerVideo);
   return (
     <div className="">
       <iframe

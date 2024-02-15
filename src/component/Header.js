@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import { setLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const user = useSelector((appStore) => appStore.user);
-  const showGpt = useSelector((appStore) => appStore.gpt.showGpt);
+  const [showGpt, setShowGpt] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const Header = () => {
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid, email, displayName, photoURL }));
         dispatch(hideGpt());
-        navigate("/browse");
+        // navigate("/browse");
       } else {
         dispatch(removeUser());
         navigate("/");
@@ -46,7 +46,12 @@ const Header = () => {
   };
 
   const handleShowGptSearch = () => {
-    dispatch(toggleGpt());
+    if (showGpt) {
+      navigate("/browse");
+    } else {
+      navigate("/gpt/search");
+    }
+    setShowGpt(!showGpt);
   };
 
   const handleLanguageChange = (e) => {
@@ -55,7 +60,15 @@ const Header = () => {
   };
   return (
     <div className="absolute bg-gradient-to-t from-transparent to-black w-full h-24 mb-20 z-50 flex justify-between items-center">
-      <img src={NETFLIX_LOGO} className="w-56" alt="logo" />
+      <img
+        src={NETFLIX_LOGO}
+        className="w-56"
+        alt="logo"
+        onClick={() => {
+          navigate("/browse");
+          setShowGpt(false);
+        }}
+      />
       {user && (
         <div className="flex items-center px-2">
           {showGpt && (

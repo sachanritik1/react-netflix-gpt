@@ -2,7 +2,7 @@ import React, { useDebugValue, useRef, useState } from "react";
 import { validateData } from "../utils/validate";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../utils/userSlice";
 
@@ -27,6 +27,7 @@ const Signin = ({ setIsSignInForm }) => {
     )
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user);
         dispatch(
           addUser({
             uid: user.uid,

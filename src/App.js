@@ -1,9 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Browse from "./component/Browse";
+import Browse from "./pages/Browse";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
-import Body from "./component/Body";
-import Login from "./component/Login";
+import Body from "./pages/Body";
+import Login from "./pages/Login";
+import Watch from "./pages/Watch";
+import GptSearch from "./pages/GptSearch";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -18,6 +20,14 @@ function App() {
         {
           path: "/browse",
           element: <Browse />,
+        },
+        {
+          path: "/gpt/search",
+          element: <GptSearch />,
+        },
+        {
+          path: "/watch/:movieId",
+          element: <Watch />,
         },
       ],
     },

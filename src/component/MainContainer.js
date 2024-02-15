@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { TMDB_API_OPTIONS, TMDB_VIDEO_URL } from "../utils/constants";
 import VideoBackground from "./VideoBackground";
 import VideoTitle from "./VideoTitle";
 
@@ -23,7 +22,7 @@ const MainContainer = () => {
 
   return (
     <div>
-      <VideoTitle title={mainMovie.title} overview={mainMovie.overview} />
+      <VideoTitle mainMovie={mainMovie} />
       <VideoBackground movieId={mainMovie.id} />
     </div>
   );

@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const VideoTitle = ({ title, overview }) => {
+const VideoTitle = ({ mainMovie }) => {
+  const { title, overview, id } = mainMovie;
+  const navigate = useNavigate();
   return (
     <div className="absolute text-white bg-gradient-to-r px-6 pt-72 from-black w-full h-screen ">
       <p className="font-semibold text-6xl py-1">{title}</p>
@@ -8,7 +11,10 @@ const VideoTitle = ({ title, overview }) => {
         {overview.length < 300 ? overview : overview.slice(0, 300) + "..."}
       </p>
       <div className="flex py-1">
-        <button className="bg-white text-black px-5 py-2 rounded-sm text-lg hover:bg-opacity-80">
+        <button
+          className="bg-white text-black px-5 py-2 rounded-sm text-lg hover:bg-opacity-80"
+          onClick={() => navigate("/watch/" + id)}
+        >
           ▶️ Play
         </button>
         <button className="mx-5 bg-gray-600 px-5 py-2 rounded-sm text-white text-lg">
